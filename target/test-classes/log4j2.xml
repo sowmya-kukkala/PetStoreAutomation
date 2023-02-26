@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="WARN"> 
+
+<Properties>
+		<Property name="basePath">./logs</Property> <!-- ./logs represent the current project and folder location path-->
+	</Properties>
+
+
+  <Appenders> <!-- Appenders used to share logs either through console or file form in the provided pattern accordingly-->
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+    
+      <RollingFile name="File" fileName="${basePath}/automation.log" filePattern="${basePath}/automation-%d{yyyy-MM-dd}.log">
+     <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+      <SizeBasedTriggeringPolicy size="50000" />
+   	</RollingFile>
+    
+    
+  </Appenders>
+  
+  <Loggers>
+	 <!--<Root level="Debug">--> <!-- Need not use the debug mode until unless to make developer understand the issue will set to debug mode-->
+    <Root level="info"> <!-- Here you can use multiple log levels  All < Trace < Debug < Info < Warn < Error < Fatal < Off -->
+      <AppenderRef ref="File"/>  <!-- <AppenderRef ref="Console"/> -->
+      <!-- <AppenderRef ref="Console"/> -->
+    </Root>
+  </Loggers>
+  
+</Configuration>
